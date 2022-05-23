@@ -30,7 +30,24 @@ const AddDoctor = () => {
                         img: img
                     }
                     //send data to database
-
+                    fetch('http://localhost:5000/doctor', {
+                        method: "POST",
+                        headers: {
+                            'content-type': 'application/json',
+                            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+                        },
+                        body: JSON.stringify(doctor)
+                    })
+                        .then(res => res.json())
+                        .then(inserted => {
+                            if (inserted.insertedId) {
+                                toast.success('Doctor added successfully');
+                                reset();
+                            }
+                            else {
+                                toast.error('Failed to add doctor');
+                            }
+                        })
                 };
             })
     }
