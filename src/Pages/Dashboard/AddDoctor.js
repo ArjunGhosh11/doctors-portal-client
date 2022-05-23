@@ -6,7 +6,7 @@ import Loading from '../Shared/Loading';
 const AddDoctor = () => {
     const { register, formState: { errors }, handleSubmit, reset } = useForm();
 
-    const { data: services, isLoading } = useQuery('services', () => fetch('http://localhost:5000/service').then(res => res.json()))
+    const { data: services, isLoading } = useQuery('services', () => fetch('https://desolate-escarpment-98820.herokuapp.com/service').then(res => res.json()))
 
     const imageStorageKey = "94a4e90d66d6ce1a96368a6a24293843";
 
@@ -30,7 +30,7 @@ const AddDoctor = () => {
                         img: img
                     }
                     //send data to database
-                    fetch('http://localhost:5000/doctor', {
+                    fetch('https://desolate-escarpment-98820.herokuapp.com/doctor', {
                         method: "POST",
                         headers: {
                             'content-type': 'application/json',
